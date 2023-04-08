@@ -1,0 +1,26 @@
+.label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+}
+
+.select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline;
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #0066cc;
+}
+
+.select option[hidden] {
+  display: none;
+}
