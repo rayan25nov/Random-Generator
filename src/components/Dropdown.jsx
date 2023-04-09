@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import Styles from "./Dropdown.module.css";
-import Constraint from "./Constaint";
+import Constraint from "./Constraint";
 const Dropdown = () => {
   const [selectNumber, setSelectNumber] = useState(false);
   const [selectAlphabet, setselectAlphabet] = useState(false);
@@ -27,7 +27,7 @@ const Dropdown = () => {
         required
       >
         <option value="" hidden>
-          ---select---
+          --select-- &#9661;
         </option>
         <option value="alphabet">Alphabet</option>
         <option value="number">Number</option>
