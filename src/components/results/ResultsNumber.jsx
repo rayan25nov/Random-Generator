@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import "./Results.css";
 
-const Result = (props) => {
+const ResultsNumber = (props) => {
   const [randomValue, setRandomValue] = useState(null);
+  const [rubbishInput, setRubbishInput] = useState("");
+  const [hasRubbishInput, sethasRubbishInput] = useState(false);
   const [hasValue, setHasvalue] = useState(false);
 
   function generateRandomNumbers(start, end) {
@@ -9,8 +12,7 @@ const Result = (props) => {
     const result = [];
 
     while (result.length <= countNum) {
-      const randomNumber =
-        Math.floor(Math.random() * (end - start + 1)) + start;
+      const randomNumber = Math.floor(Math.random() * (countNum + 1)) + start;
 
       if (!result.includes(randomNumber)) {
         result.push(randomNumber);
@@ -18,33 +20,42 @@ const Result = (props) => {
     }
     return result;
   }
-  // if (props.click) {
+
   const clickHandler = () => {
-    if (props.showValue) {
+    if (props.selectNumber && props.showValue) {
       const end = props.uptoVal;
       const results = generateRandomNumbers(1, end);
       setRandomValue(results);
-    } else if (props.showMinMax) {
+      setHasvalue(true);
+      sethasRubbishInput(false);
+    } else if (props.selectNumber && props.showMinMax) {
       const startVal = parseInt(props.minimumVal);
       const endVal = parseInt(props.maximumVal);
-      const results = generateRandomNumbers(startVal, endVal);
-      setRandomValue(results);
+      if (startVal >= endVal) {
+        setRubbishInput(
+          "Maximum value should always be greater than minimum value"
+        );
+        sethasRubbishInput(true);
+      } else {
+        const results = generateRandomNumbers(startVal, endVal);
+        setRandomValue(results);
+        setHasvalue(true);
+        sethasRubbishInput(false);
+      }
     }
-    setHasvalue(true);
-    console.log(
-      props.minimumVal + " " + props.maximumVal + " " + props.uptoVal
-    );
   };
   return (
     <div>
       <button onClick={clickHandler}>Generate</button>
+
       <p>
         {hasValue &&
           "All the Generated values are :" +
             randomValue.map((res) => `${res} `)}
+        {hasRubbishInput && rubbishInput}
       </p>
     </div>
   );
 };
 
-export default Result;
+export default ResultsNumber;

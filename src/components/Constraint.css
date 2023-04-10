@@ -1,0 +1,42 @@
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+input[type="radio"] {
+  margin: 0 0.5rem;
+  transform: scale(1.2);
+}
+
+label {
+  font-size: 1.1rem;
+  margin: 0 0.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

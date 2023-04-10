@@ -1,11 +1,12 @@
 import { React, useState } from "react";
-import Result from "./Result";
+import ResultsNumber from "./results/ResultsNumber";
+import ResultsAlphabets from "./results/ResultsAlphabets";
+import "./Constraint.css";
 
-const Constraint = () => {
+const Constraint = (props) => {
   const [showValue, setShowValue] = useState(false);
   const [showMinMax, setShowMinMax] = useState(false);
   const [hasResult, setHasResult] = useState(false);
-  const [click, setClick] = useState(false);
   const [inputValue, setinputValue] = useState("");
   const [minVal, setMin] = useState("");
   const [maxVal, setMax] = useState("");
@@ -30,12 +31,11 @@ const Constraint = () => {
     setMax(event.target.value);
   };
   const handleClick = () => {
-    setClick(true);
     setHasResult(true);
   };
   return (
     <div>
-      <form>
+      <div>
         <p>Please select your Constraint</p>
         <input
           type="radio"
@@ -44,7 +44,7 @@ const Constraint = () => {
           value="value"
           onClick={onlyValue}
         />{" "}
-        <label htmlFor="val">Only Value</label>
+        <label htmlFor="val">Upto Value</label>
         <input
           type="radio"
           id="alt"
@@ -53,7 +53,7 @@ const Constraint = () => {
           onClick={constraintValue}
         />{" "}
         <label htmlFor="alt">Min and Max Value</label>
-      </form>
+      </div>
       {showValue && (
         <div>
           <label htmlFor="input_val">Total number of Inputs: </label>
@@ -91,14 +91,24 @@ const Constraint = () => {
           <button onClick={handleClick}>Generate</button>
         </div>
       )}
-      {hasResult && (
-        <Result
+      {hasResult && props.selectNumber && (
+        <ResultsNumber
           uptoVal={inputValue}
           minimumVal={minVal}
           maximumVal={maxVal}
           showValue={showValue}
           showMinMax={showMinMax}
-          click={click}
+          selectNumber={props.selectNumber}
+        />
+      )}
+      {hasResult && props.selectAlphabet && (
+        <ResultsAlphabets
+          uptoVal={inputValue}
+          minimumVal={minVal}
+          maximumVal={maxVal}
+          showValue={showValue}
+          showMinMax={showMinMax}
+          selectAlphabet={props.selectAlphabet}
         />
       )}
     </div>
